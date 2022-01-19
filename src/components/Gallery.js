@@ -7,7 +7,7 @@ import GalleryItem from './GalleryItem'
 function Gallery(props){
     
     // const data = useContext(DataContext)
-    // console.log(data)
+     console.log(props.data)
 
     const display = props.data.map((song, index) => {
         return (
