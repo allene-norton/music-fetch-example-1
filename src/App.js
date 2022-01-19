@@ -1,23 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react'
+import Gallery from './components/Gallery'
+import Searchbar from './components/Searchbar'
 
 function App() {
+  let [searchTerm, setSearchTerm] = useState('')
+  let [data, setData] = useState([])
+  let [message, setMessage] = useState('Search for Music!')
+
+  useEffect(() => {
+    if (searchTerm) {
+      document.title=`${searchTerm} Music`
+      const fetchData = async () => {
+        const response = await fetch(`https://itunes.apple.com/search?term=${searchTerm}`)
+        const resData = await response.json()
+        if(resData.results.length > 0) {
+          setData(resData.results)
+        } else {
+          setMessage('Not Found')
+        }
+      }
+      fetchData()
+  }
+  }, [searchTerm])
+
+  const handleSearch = (e, term) => {
+    e.preventDefault()
+    setSearchTerm(term)
+  }
+
+  console.log(data)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Searchbar handleSearch={handleSearch} />
+      {message}
+      <Gallery data={data} />
     </div>
   );
 }
