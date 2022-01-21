@@ -6,20 +6,18 @@ function GalleryItem(props) {
 
     const simpleStyle = {
         'width': '25vw',
-        'height': '40vh',
+        'height': '25vh',
         'border': '1px solid black',
-        'margin': '2px'
+        'margin': '5px'
     }
     
     const detailStyle = {
         'width': '80vw',
-        'height': '20vh',
+        'height': '50vh',
         'border': '1px solid black',
-        'margin': '2px',
-        'backgroundImage': `url(${props.song.artworkUrl100})`,
-        'backgroundRepeat': 'no-repeat',
-        'backgroundSize': 'cover',
-        'color': 'yellow'
+        'margin': '5px',
+        'backgroundColor': 'peru',
+        'color': 'white'
     }
 
     const simpleView = () => {
@@ -27,7 +25,6 @@ function GalleryItem(props) {
             <div style={simpleStyle} >
                 <h3>{props.song.trackName}</h3>
                 <h4>{props.song.collectionName}</h4>
-                <img src={props.song.artworkUrl100} />
             </div>
         )
     }
@@ -39,6 +36,8 @@ function GalleryItem(props) {
                 <h3>{props.song.collectionName}</h3>
                 <h4>{props.song.primaryGenreName}</h4>
                 <h4>{props.song.releaseDate}</h4>
+                <img src={props.song.artworkUrl100} />
+
             </div>
         )
     }
