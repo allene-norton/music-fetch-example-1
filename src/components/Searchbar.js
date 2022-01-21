@@ -1,4 +1,4 @@
-// Searchbar.js
+// SearchBar.js
 import {useState, useContext} from 'react'
 import { SearchContext } from '../context/SearchContext.js'
 
